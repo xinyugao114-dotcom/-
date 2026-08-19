@@ -1,0 +1,9 @@
+# 源码运行依赖（建议使用 Python 3.10+）
+PyQt6>=6.6
+pyperclip>=1.8
+pyautogui>=0.9.54
+pynput>=1.7.6
+deep-translator>=1.11
+requests>=2.31
+numpy>=1.26
+opencv-python>=4.8

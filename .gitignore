@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# 离线词典（体积超 100MB，不进源码仓库；打包 EXE 时打入）
+stardict.csv
+*.db
+*.db-wal
+*.db-shm
+
+# 打包产物（PyInstaller 工作目录与最终输出）
+build/QuickTranslate/
+dist/
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
