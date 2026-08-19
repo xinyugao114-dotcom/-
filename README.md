@@ -17,10 +17,12 @@
 
 ### 方式一：下载压缩包（推荐，免安装）
 
-前往 [Releases](https://github.com/xinyugao114-dotcom/-/releases) 下载对应系统的压缩包：
+直接点击下载对应系统的压缩包：
 
-- **Windows**：下载 `QuickTranslate-Windows-x64.zip`，解压后双击 `QuickTranslate.exe` 即可运行，已内置离线词典，无需安装 Python。
-- **macOS / Linux**：下载 `QuickTranslate-macOS-Linux-Source.zip`，解压后需 Python 3.10+，按下方「源码运行」安装依赖后启动。
+- **Windows**：点此下载 [QuickTranslate-Windows-x64.zip](https://github.com/xinyugao114-dotcom/-/releases/download/v1.0.0/QuickTranslate-Windows-x64.zip)（约 178 MB），解压后双击 `QuickTranslate.exe` 即可运行，已内置离线词典，无需安装 Python。
+- **macOS / Linux**：点此下载 [QuickTranslate-macOS-Linux-Source.zip](https://github.com/xinyugao114-dotcom/-/releases/download/v1.0.0/QuickTranslate-macOS-Linux-Source.zip)（源码，约 0.16 MB），解压后需 Python 3.10+，按下方「源码运行」安装依赖后启动。
+
+> 更多版本见 [Releases](https://github.com/xinyugao114-dotcom/-/releases) 页面。
 
 ### 方式二：源码运行
 
