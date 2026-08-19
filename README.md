@@ -45,26 +45,38 @@ python main.py
 | 长截图 | 截图框选后点「长截图」，滚动鼠标滚轮，按 `Esc` 完成 |
 | 关闭钉图 | 钉图卡片右上角「✕」，或右键「销毁钉图」 |
 
-## 🔨 打包
+## 🔨 打包（仅二次开发需要）
+
+> 普通用户**无需打包**，直接去上方「📦 安装」下载现成的压缩包即可。本节仅面向想自己从源码编译 EXE 的开发者。
+
+### 前置准备
+
+先在**项目根目录**（含 `main.py` 的文件夹）打开终端，执行：
+
+```bash
+pip install -r requirements.txt
+pip install pyinstaller
+py make_icon.py        # Windows 生成图标
+python3 make_icon.py   # macOS 生成图标
+```
 
 ### Windows（生成 `dist/QuickTranslate.exe`）
+
+在**项目根目录**的终端（CMD 或 PowerShell）里运行：
 
 ```bat
 build\build_win.bat
 ```
 
+> 也可以直接在资源管理器里双击 `build\build_win.bat`，脚本会自动切到项目根目录执行。
+
 ### macOS（生成 `dist/QuickTranslate`，需在 Mac 上执行）
+
+在**项目根目录**的终端里运行：
 
 ```bash
 chmod +x build/build_mac.sh
 ./build/build_mac.sh
-```
-
-首次打包前先生成图标：
-
-```bash
-py make_icon.py        # Windows
-python3 make_icon.py   # macOS
 ```
 
 ## ⚙️ macOS 授权说明
