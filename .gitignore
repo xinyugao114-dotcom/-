@@ -21,3 +21,6 @@ dist/
 Thumbs.db
 .idea/
 .vscode/
+
+# 发布用的压缩包（体积大，不进 git 仓库）
+release/
