@@ -1689,7 +1689,7 @@ def create_tray_icon(app, controller):
     tray = QSystemTrayIcon()
 
     tray.setIcon(make_app_icon(32))
-    tray.setToolTip(f"划词翻译与截图工具 v{CURRENT_VERSION}")
+    tray.setToolTip(f"译随心翻 · 划词翻译与截图工具 v{CURRENT_VERSION}")
 
     menu = QMenu()
 
@@ -1726,8 +1726,9 @@ def create_tray_icon(app, controller):
 
 # ==================== 8. 自动替换与自启 ====================
 def check_first_run_install():
+    """首次安装/升级时弹窗提示，返回是否弹过窗（用于决定是否再显示托盘气泡）。"""
     if sys.platform != "win32":
-        return
+        return False
     try:
         current_pid = os.getpid()
         appdata_dir = os.environ.get('LOCALAPPDATA', os.environ.get('APPDATA', ''))
@@ -1768,12 +1769,20 @@ def check_first_run_install():
                 f.write(CURRENT_VERSION)
 
             msg = QMessageBox()
-            msg.setWindowTitle("划词翻译 - 升级成功")
-            msg.setText(f"划词翻译 (v{CURRENT_VERSION}) 升级成功！\n\n- 集成 GitHub 开源长截图缝合算法 (基于 OpenCV 模板匹配)\n- 支持向下滚动鼠标进行任意长度网页/代码的长截图\n- 自动将长截图生成钉图卡片置顶贴在桌面上")
+            msg.setWindowTitle("译随心翻 - 安装完成")
+            msg.setText(
+                f"译随心翻（QuickTranslate）已安装并启动！\n\n"
+                f"✅ 程序正在后台运行，图标在系统托盘（屏幕右下角）。\n"
+                f"✅ 选中任意文本后，按住 Alt 键即可弹出翻译。\n"
+                f"✅ 右键托盘图标可截图、钉图、暂停或退出。\n\n"
+                f"当前版本：v{CURRENT_VERSION}"
+            )
             msg.setIcon(QMessageBox.Icon.Information)
             msg.exec()
+            return True
     except Exception:
         pass
+    return False
 
 def network_monitor_loop():
     global IS_ONLINE
@@ -1795,7 +1804,7 @@ if __name__ == '__main__':
     monitor_thread = threading.Thread(target=network_monitor_loop, daemon=True)
     monitor_thread.start()
 
-    check_first_run_install()
+    showed_install_dialog = check_first_run_install()
 
     window = FloatingWindow()
     signals.text_selected.connect(window.show_at)
@@ -1807,6 +1816,14 @@ if __name__ == '__main__':
     kb_listener.start()
 
     tray = create_tray_icon(app, controller)
+
+    if not showed_install_dialog:
+        tray.showMessage(
+            "译随心翻 已启动",
+            "程序正在后台运行（图标在系统托盘）。\n选中文本后按住 Alt 翻译；右键托盘图标可截图 / 钉图 / 退出。",
+            QSystemTrayIcon.MessageIcon.Information,
+            5000
+        )
 
     def _cleanup():
         _TRANSLATOR_POOL.shutdown(wait=False)
