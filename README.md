@@ -49,35 +49,50 @@ python main.py
 
 > 普通用户**无需打包**，直接去上方「📦 安装」下载现成的压缩包即可。本节仅面向想自己从源码编译 EXE 的开发者。
 
-### 前置准备
+### 第 0 步：先拿到源码
 
-先在**项目根目录**（含 `main.py` 的文件夹）打开终端，执行：
+```bash
+git clone https://github.com/xinyugao114-dotcom/-.git QuickTranslate
+```
+
+或从 [Releases](https://github.com/xinyugao114-dotcom/-/releases) 下载 `QuickTranslate-macOS-Linux-Source.zip` 并解压。
+
+得到文件夹后，里面有 `main.py`、`QuickTranslate.spec` 等文件——**这个文件夹就是「项目根目录」**，下面所有命令都要在这个文件夹里运行。
+
+### 第 1 步：在项目根目录打开终端
+
+- **Windows**：进入该文件夹 → 在文件资源管理器**地址栏**输入 `cmd` 回车（直接定位到当前目录）；或按住 `Shift` 在文件夹空白处**右键** → 「在此处打开 PowerShell 窗口」。
+- **macOS**：打开「终端」App → 输入 `cd `（cd 后面有个空格）→ 把项目文件夹**拖进终端窗口** → 回车。
+
+### 第 2 步：安装依赖与打包工具
+
+在终端里依次运行：
 
 ```bash
 pip install -r requirements.txt
 pip install pyinstaller
-py make_icon.py        # Windows 生成图标
-python3 make_icon.py   # macOS 生成图标
+py make_icon.py        # Windows：生成图标
+python3 make_icon.py   # macOS：生成图标
 ```
 
-### Windows（生成 `dist/QuickTranslate.exe`）
+### 第 3 步：执行打包
 
-在**项目根目录**的终端（CMD 或 PowerShell）里运行：
+**Windows**（生成 `dist\QuickTranslate.exe`）：
 
 ```bat
 build\build_win.bat
 ```
 
-> 也可以直接在资源管理器里双击 `build\build_win.bat`，脚本会自动切到项目根目录执行。
+> 更省事：直接双击 `build` 文件夹里的 `build_win.bat`，脚本会自动定位到项目根目录执行。
 
-### macOS（生成 `dist/QuickTranslate`，需在 Mac 上执行）
-
-在**项目根目录**的终端里运行：
+**macOS**（生成 `dist/QuickTranslate`，需在 Mac 上执行）：
 
 ```bash
 chmod +x build/build_mac.sh
 ./build/build_mac.sh
 ```
+
+打包完成后，产物在 `dist/` 文件夹里。
 
 ## ⚙️ macOS 授权说明
 
